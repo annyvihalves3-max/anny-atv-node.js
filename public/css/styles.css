@@ -1,0 +1,105 @@
+body{
+    margin: 0;
+    line-height: 30px;
+}
+
+header{
+    background-color: #161616;
+}
+
+header h1 {
+        color: #ffffff;
+        text-align: center;
+}
+
+main {
+    min-height: 100vh;
+}
+
+footer {
+    background-color: #161616;
+}
+
+footer p {
+    color: #ffffff;
+    text-align: center;
+}
+
+/* Estilo para a Logo */
+.navbar-brand {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-left: 4vh;
+}
+
+/* Espaçamento entre os links do menu */
+.nav-link {
+    margin-left: 30px;
+    font-weight: 500;
+}
+
+/* Forçar a transparência e remover bordas que o Bootstrap coloca */
+.navbar-nav {
+    margin-left: 90vh;
+}
+
+.hero {
+    height: 65vh; 
+    width: 100%; 
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url('../imgs/paisagem.jpg'); 
+    background-size: cover;     
+    background-position: center;  
+    background-repeat: no-repeat; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+.hero-container h1 {
+    font-size: 3rem; 
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.hero-container p {
+    font-size: 1.7rem;
+    margin-bottom: 30px;
+}
+
+.destino-card {
+    border: none; 
+    border-radius: 15px; 
+    overflow: hidden; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+}
+
+.destino-card:hover {
+    transform: translateY(-10px); /* Sobe um pouquinho */
+    box-shadow: 0 10px 25px rgba(0, 184, 148, 0.2); /* Sombra verde sutil */
+    border: 1px solid #00b894 !important; /* Bordinha verde */
+}
+
+.destino-card img {
+    height: 180px;
+    object-fit: cover; 
+}
+
+.card-titulo {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.card-text {
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.estrelas {
+    font-size: 0.9rem;
+    margin-top: 10px;
+color: #e0e30f;
+}
