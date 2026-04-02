@@ -103,3 +103,44 @@ footer p {
     margin-top: 10px;
 color: #e0e30f;
 }
+
+.destino-card img {
+    height: 180px; /* Altura fixa */
+    object-fit: cover; /* Faz a imagem cortar sem esticar */
+    width: 100%;
+}
+
+.destino-card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.destino-card:hover {
+    transform: scale(1.02);
+}
+
+
+.cabecalho-destinos {
+    display: flex;                  
+    justify-content: space-between; 
+    align-items: center;          
+    margin-bottom: 1.5rem;          
+}
+
+.ver-mais-link {
+    text-decoration: none;       
+    color: #00C87F;                
+    font-weight: 600;
+    font-size: 1.4rem;
+    transition: 0.3s;
+}
+
+.ver-mais-link:hover {
+    color: #1a4a32;               
+    text-decoration: underline;   
+}
+
+.cabecalho-destinos h2 {
+    margin-bottom: 0;
+}
