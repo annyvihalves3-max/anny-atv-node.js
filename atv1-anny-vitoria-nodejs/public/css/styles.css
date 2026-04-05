@@ -25,7 +25,6 @@ footer p {
     text-align: center;
 }
 
-/* Estilo para a Logo */
 .navbar-brand {
     font-weight: bold;
     text-transform: uppercase;
@@ -33,13 +32,28 @@ footer p {
     margin-left: 4vh;
 }
 
-/* Espaçamento entre os links do menu */
 .nav-link {
     margin-left: 30px;
     font-weight: 500;
 }
 
-/* Forçar a transparência e remover bordas que o Bootstrap coloca */
+.nav-link {
+    color: #555 !important; 
+    transition: 0.3s ease;
+    font-weight: 500;
+}
+
+.nav-link.ativo {
+    color: #39779E !important; 
+    font-weight: bold;
+    border-bottom: 2px solid #39779E; 
+}
+
+.nav-link:hover {
+    color: #3376e9 !important; 
+    transform: translateY(-2px); 
+}
+
 .navbar-nav {
     margin-left: 90vh;
 }
@@ -143,4 +157,111 @@ color: #e0e30f;
 
 .cabecalho-destinos h2 {
     margin-bottom: 0;
+}
+
+.card-roteiro {
+    height: 180px; 
+    overflow: hidden;
+    display: flex;
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+}
+/* Estado normal do card */
+.card-roteiro {
+    height: 180px;
+    overflow: hidden;
+    display: flex;
+    transition: all 0.3s ease; /* Cria o efeito suave de transição */
+    cursor: pointer;
+    background-color: #ffffff;
+    border: 1px solid #eee;
+}
+
+.card-roteiro:hover {
+    background-color: #e9eaeb; 
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); 
+    border-color: #2c5d7d; 
+}
+
+.card-roteiro:hover h3 {
+    color: #107ff6 !important;
+    transition: 0.3s;
+}
+
+.card-roteiro .row {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+.card-roteiro img {
+    width: 100%;
+    height: 280px !important; 
+    object-fit: cover;
+}
+
+.card-roteiro .card-body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    padding: 10px 20px;
+}
+
+/* Título menor para caber na linha */
+.card-roteiro h3 {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+.roteiro-dias p {
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: #444;
+}
+
+/* Estilização Geral do Footer */
+.footer {
+    background-color: #ffffff;
+    border-top: 1px solid #eee;
+    color: #555;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.footer h6 {
+    color: #39779E; 
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.footer .text-decoration-none {
+    transition: all 0.3s ease;
+    color: #666 !important;
+}
+
+.footer .text-decoration-none:hover {
+    color: #3376e9 !important; 
+    padding-left: 5px;
+}
+
+.footer-bottom-bar {
+    background-color: #39779E; 
+    color: #ffffff;           
+    padding: 15px 0;          
+    margin-top: 30px;         
+    width: 100%;
+}
+
+.footer-bottom-bar p {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
 }

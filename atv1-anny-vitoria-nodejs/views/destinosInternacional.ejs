@@ -1,12 +1,11 @@
 <%- include ('partials/header.ejs') %>
 <%- include ('partials/navbar.ejs') %>
 
-
 <section class="container my-5">
     <h2 class="mb-4 fw-bold"><%= titulo %></h2>
     
     <div class="row g-4">
-        <% lista.forEach(function(destino) { %>
+        <% listaInter.forEach(function(destino) { %>
             
             <div class="col-md-3">
                 <div class="card destino-card h-100">
@@ -17,8 +16,12 @@
                         <p class="regiao">Região: <%= destino.regiao %></p>
                         <p class="descricao"><%= destino.descricao %></p>                        
                         <div class="estrelas text-warning">
-                            <% for(let i=0; i < 5; i++) { %>★<% } %>
-                        </div>
+                                <% for(let i=0; i < 5; i++) { %>
+                                <% if (i < destino.estrelas) { %>
+                                ★ <% } else { %>
+                                ☆ <% } %>
+                                <% } %>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -27,6 +30,5 @@
     </div>
 </section>
     
-</main>
 
 <%- include ('partials/footer.ejs') %>
