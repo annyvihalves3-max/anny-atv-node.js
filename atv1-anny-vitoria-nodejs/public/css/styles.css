@@ -16,15 +16,6 @@ main {
     min-height: 100vh;
 }
 
-footer {
-    background-color: #161616;
-}
-
-footer p {
-    color: #ffffff;
-    text-align: center;
-}
-
 .navbar-brand {
     font-weight: bold;
     text-transform: uppercase;
@@ -260,8 +251,70 @@ color: #e0e30f;
     width: 100%;
 }
 
-.footer-bottom-bar p {
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
+/* Posicionamento do ícone de salvar sobre a imagem */
+.btn-salvar-card {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 5;
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #B13208; /* Laranja da sua marca */
+    text-decoration: none;
+    transition: 0.3s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+
+.btn-salvar-card:hover {
+    background-color: #B13208;
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.text-orange { color: #B13208 !important; }
+
+.active-profile-link {
+    background-color: transparent !important;
+    color: #B13208 !important;
+    font-weight: bold;
+    border-radius: 0 !important;
+}
+
+.avatar-placeholder {
+    width: 60px;
+    height: 60px;
+    background-color: #e9ecef;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-card img {
+    height: 160px;
+    object-fit: cover;
+}
+
+.bookmark-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 5;
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #B13208; /* Laranja da sua marca */
+    text-decoration: none;
+    transition: 0.3s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+

@@ -4,12 +4,14 @@ import express from "express";
 import DestinosNacionalController from "./controllers/destinosNacionalController.js";
 import DestinoInternacionalController from "./controllers/DestinoInternacionalController.js";
 import RoteirosController from "./controllers/RoteirosController.js";   
+import PerfilController from "./controllers/PerfilCrontroller.js";
 
 const app = express();
 
 app.use("/", DestinosNacionalController);
 app.use("/", DestinoInternacionalController);
 app.use("/", RoteirosController);
+app.use("/", PerfilController);
 
 //CONFIGURANDO O EJS
 app.set("view engine", "ejs");
