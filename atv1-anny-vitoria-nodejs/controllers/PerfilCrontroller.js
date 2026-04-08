@@ -6,26 +6,26 @@ router.get("/perfil", function(req, res) {
     const roteirosFavoritos = [
         {
             id: 1,
-            nome: "Fernando de Noronha",
-            descricao: "Roteiro Sol & Mar completo",
-            img: "../imgs/fernando-de-noronha.jpg", 
+            nome: "Rio de Janeiro",
+            descricao: "Cultura, Praias e Paisagens Icônicas",
+            img: "../imgs/rio-janeiro.jpg", 
         },
         {
             id: 2,
             nome: "Orlando",
-            descricao: "Romantismo e Gastronomia",
+            descricao: "Magia, Diversão e Parques Temáticos",
             img: "../imgs/orlando.jpg",
         },
         {
             id: 3,
             nome: "Maldivas",
-            descricao: "Romantismo e Gastronomia",
+            descricao: "Paraíso Tropical e Luxo à Beira-Mar",
             img: "../imgs/maldivas.avif",
         },
         {
             id: 4,
             nome: "Chapada Diamantina",
-            descricao: "Aventura e Natureza Pura",
+            descricao: "Natureza, Trilhas e Cachoeiras Deslumbrantes",
             img: "../imgs/chapada.jpg",
         }
     ];
