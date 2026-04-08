@@ -1,7 +1,7 @@
 // O arquivo index.js é o arquivo principal do projeto
 import express from "express";
 
-import DestinosNacionalController from "./controllers/destinosNacionalController.js";
+import DestinosNacionalController from "./controllers/DestinosNacionalController.js";
 import DestinoInternacionalController from "./controllers/DestinoInternacionalController.js";
 import RoteirosController from "./controllers/RoteirosController.js";   
 import PerfilController from "./controllers/PerfilCrontroller.js";

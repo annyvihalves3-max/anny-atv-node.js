@@ -1,7 +1,6 @@
 import express from "express";
 const router = express.Router();
-
-// Destinos Internacionais  
+ 
 router.get("/internacional", function(req, res) {
 const destinosInternacionais = [
     { 

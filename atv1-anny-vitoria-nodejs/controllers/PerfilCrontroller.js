@@ -2,7 +2,6 @@ import express from "express";
 const router = express.Router();
 
 router.get("/perfil", function(req, res) {
-    // 1. Criamos a lista de destinos que aparecerão no Perfil
     const roteirosFavoritos = [
         {
             id: 1,
@@ -30,7 +29,6 @@ router.get("/perfil", function(req, res) {
         }
     ];
 
-    // 2. Renderizamos a página 'perfil.ejs' enviando os dados
     res.render("perfil", {
         titulo: "Meu Perfil - seuRoteiro",
         paginaAtiva: "perfil",
@@ -38,7 +36,7 @@ router.get("/perfil", function(req, res) {
             nome: "Lucas Martins",
             nivel: "Explorador Bronze"
         },
-        roteiros: roteirosFavoritos // Esta é a variável que o EJS vai usar no loop
+        roteiros: roteirosFavoritos 
     });
 });
 
