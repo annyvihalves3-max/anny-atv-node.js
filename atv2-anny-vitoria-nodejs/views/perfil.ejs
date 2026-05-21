@@ -1,0 +1,93 @@
+<%- include ('partials/header.ejs') %>
+<%- include ('partials/navbar.ejs') %>
+
+<div class="container my-5">
+    <div class="row">
+
+        <!-- SIDEBAR -->
+        <aside class="col-md-3">
+            <div class="perfil-sidebar p-3 border rounded shadow-sm bg-white">
+                <div class="text-center mb-4">
+                    <div class="avatar-placeholder mb-2 mx-auto">
+                        <i class="fa-solid fa-user fa-2x text-muted"></i>
+                    </div>
+                    <h6 class="fw-bold mb-0">Lucas Martins</h6>
+                    <small class="text-orange">Explorador Bronze</small>
+                </div>
+
+                <div class="list-group list-group-flush">
+                    <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center"
+                       onclick="showTab('painel')">
+                        <i class="fa-solid fa-border-all me-3"></i> Meu Painel
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center"
+                       onclick="showTab('dados')">
+                        <i class="fa-regular fa-user me-3"></i> Meus Dados
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center active-profile-link"
+                       id="tab-roteiros-link" onclick="showTab('roteiros')">
+                        <i class="fa-regular fa-bookmark me-3"></i> Meus Roteiros Salvos
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center"
+                       id="tab-viagens-link" onclick="showTab('viagens')">
+                        <i class="fa-solid fa-route me-3"></i> Minhas Viagens
+                    </a>
+                    <a href="/viagens/cadastrar" class="list-group-item list-group-item-action border-0 d-flex align-items-center text-danger fw-semibold">
+                        <i class="fa-solid fa-plus me-3"></i> Cadastrar Viagem
+                    </a>
+                    <hr>
+                    <a href="/" class="list-group-item list-group-item-action border-0 d-flex align-items-center text-danger">
+                        <i class="fa-solid fa-arrow-right-from-bracket me-3"></i> Sair
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="col-md-9">
+
+            <!-- ABA: Meus Roteiros Salvos -->
+            <div id="tab-roteiros">
+                <div class="d-flex align-items-center mb-1">
+                    <h4 class="fw-bold mb-0">Meus Roteiros Salvos</h4>
+                    <i class="fa-solid fa-star text-orange ms-2"></i>
+                </div>
+                <p class="text-muted small mb-4">Explore e organize seus destinos favoritos</p>
+
+                <div class="row g-4">
+                    <% roteiros.forEach(function(item) { %>
+                        <div class="col-md-6">
+                            <div class="card h-100 border-0 shadow-sm profile-card">
+                                <div class="position-relative">
+                                    <img src="/images/<%= item.img %>" class="card-img-top" alt="<%= item.nome %>">
+                                    <div class="bookmark-badge">
+                                        <i class="fa-regular fa-bookmark"></i>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <h6 class="fw-bold mb-1"><%= item.nome %></h6>
+                                    <p class="text-muted small mb-3"><%= item.descricao %></p>
+                                    <div class="row g-2">
+                                        <div class="col-6">
+                                            <a href="#" class="btn btn-outline-orange btn-sm w-100">Ver Detalhes</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+
+                <!-- Botão para ir à página de cadastro -->
+                <div class="mt-4 text-center">
+                    <a href="/cadastrarViagens" class="btn btn-danger fw-semibold px-4">
+                        <i class="fa-solid fa-plus me-2"></i> Cadastrar Nova Viagem
+                    </a>
+                </div>
+            </div>
+
+        </main>
+    </div>
+</div>
+
+<%- include ('partials/footer.ejs') %>

@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/"><img src="/imgs/logo.svg" alt="Logo" class="img-fluid"></a>
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+
+    <ul class="navbar-nav">
+      <li class="nav-item">
+    <a class="nav-link <%= (typeof paginaAtiva !== 'undefined' && paginaAtiva === 'inicio') ? 'ativo' : '' %>" href="/">Inicio</a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link <%= (typeof paginaAtiva !== 'undefined' && paginaAtiva === 'nacional') ? 'ativo' : '' %>" href="/nacional">Destinos Nacionais</a>
+</li>
+      <li class="nav-item">
+        <a class="nav-link <%= (typeof paginaAtiva !== 'undefined' && paginaAtiva === 'internacional') ? 'ativo' : '' %>" href="/internacional">Destinos Internacionais</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link <%= (typeof paginaAtiva !== 'undefined' && paginaAtiva === 'roteiros')  ? 'ativo' : '' %>" href="/roteiros">Roteiros</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link <%= (typeof paginaAtiva !== 'undefined' && paginaAtiva === 'perfil') ? 'ativo' : '' %>" href="/perfil">Perfil</a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+</header>

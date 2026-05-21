@@ -1,0 +1,318 @@
+body{
+    margin: 0;
+    line-height: 30px;
+    padding: 0;
+}
+
+header{
+    background-color: #161616;
+}
+
+header h1 {
+        color: #ffffff;
+        text-align: center;
+}
+
+main {
+    min-height: 100vh;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-left: 4vh;
+}
+
+.nav-link {
+    margin-left: 30px;
+    font-weight: 500;
+}
+
+.nav-link {
+    color: #555 !important; 
+    transition: 0.3s ease;
+    font-weight: 500;
+}
+
+.nav-link.ativo {
+    color: #39779E !important; 
+    font-weight: bold;
+    border-bottom: 2px solid #39779E; 
+}
+
+.nav-link:hover {
+    color: #3376e9 !important; 
+    transform: translateY(-2px); 
+}
+
+.navbar-nav {
+    margin-left: 90vh;
+}
+
+.hero {
+    height: 65vh; 
+    width: 100%; 
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url('../imgs/paisagem.jpg'); 
+    background-size: cover;     
+    background-position: center;  
+    background-repeat: no-repeat; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+.hero-container h1 {
+    font-size: 3rem; 
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.hero-container p {
+    font-size: 1.7rem;
+    margin-bottom: 30px;
+}
+
+.destino-card {
+    border: none; 
+    border-radius: 15px; 
+    overflow: hidden; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+}
+
+.destino-card:hover {
+    transform: translateY(-10px); 
+    box-shadow: 0 10px 25px rgba(0, 184, 148, 0.2); 
+    border: 1px solid #00b894 !important; 
+}
+
+.destino-card img {
+    height: 180px;
+    object-fit: cover; 
+}
+
+.card-titulo {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.card-text {
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.estrelas {
+    font-size: 0.9rem;
+    margin-top: 10px;
+color: #e0e30f;
+}
+
+.destino-card img {
+    height: 180px; 
+    object-fit: cover; 
+    width: 100%;
+}
+
+.destino-card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.destino-card:hover {
+    transform: scale(1.02);
+}
+
+
+.cabecalho-destinos {
+    display: flex;                  
+    justify-content: space-between; 
+    align-items: center;          
+    margin-bottom: 1.5rem;          
+}
+
+.ver-mais-link {
+    text-decoration: none;       
+    color: #00C87F;                
+    font-weight: 600;
+    font-size: 1.4rem;
+    transition: 0.3s;
+}
+
+.ver-mais-link:hover {
+    color: #1a4a32;               
+    text-decoration: underline;   
+}
+
+.cabecalho-destinos h2 {
+    margin-bottom: 0;
+}
+
+.card-roteiro {
+    height: 180px; 
+    overflow: hidden;
+    display: flex;
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+}
+
+.card-roteiro {
+    height: 180px;
+    overflow: hidden;
+    display: flex;
+    transition: all 0.3s ease; 
+    cursor: pointer;
+    background-color: #ffffff;
+    border: 1px solid #eee;
+}
+
+.card-roteiro:hover {
+    background-color: #e9eaeb; 
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); 
+    border-color: #2c5d7d; 
+}
+
+.card-roteiro:hover h3 {
+    color: #107ff6 !important;
+    transition: 0.3s;
+}
+
+.card-roteiro .row {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+.card-roteiro img {
+    width: 100%;
+    height: 280px !important; 
+    object-fit: cover;
+}
+
+.card-roteiro .card-body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    padding: 10px 20px;
+}
+
+.card-roteiro h3 {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+.roteiro-dias p {
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: #444;
+}
+
+.footer {
+    background-color: #ffffff;
+    border-top: 1px solid #eee;
+    color: #555;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.footer h6 {
+    color: #39779E; 
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.footer .text-decoration-none {
+    transition: all 0.3s ease;
+    color: #666 !important;
+}
+
+.footer .text-decoration-none:hover {
+    color: #3376e9 !important; 
+    padding-left: 5px;
+}
+
+.footer-bottom-bar {
+    background-color: #39779E; 
+    color: #ffffff;           
+    padding: 15px 0;          
+    margin-top: 30px;         
+    width: 100%;
+}
+
+.btn-salvar-card {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 5;
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #B13208; 
+    text-decoration: none;
+    transition: 0.3s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn-salvar-card:hover {
+    background-color: #B13208;
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.text-orange { color: #B13208 !important; }
+
+.active-profile-link {
+    background-color: transparent !important;
+    color: #B13208 !important;
+    font-weight: bold;
+    border-radius: 0 !important;
+}
+
+.avatar-placeholder {
+    width: 60px;
+    height: 60px;
+    background-color: #e9ecef;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-card img {
+    height: 160px;
+    object-fit: cover;
+}
+
+.bookmark-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 5;
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #B13208;
+    text-decoration: none;
+    transition: 0.3s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+

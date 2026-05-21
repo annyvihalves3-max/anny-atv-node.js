@@ -1,0 +1,240 @@
+<%- include ('partials/header.ejs') %>
+<%- include ('partials/navbar.ejs') %>
+
+<div class="container my-5" style="max-width: 720px;">
+
+    <!-- Voltar -->
+    <a href="/perfil" class="text-decoration-none text-muted small d-flex align-items-center mb-3 gap-1">
+        <i class="fa-solid fa-arrow-left"></i> Voltar ao perfil
+    </a>
+
+    <!-- Cabeçalho -->
+    <div class="mb-4">
+        <h4 class="fw-bold mb-0 d-flex align-items-center gap-2">
+            <i class="fa-solid fa-map-location-dot text-danger"></i>
+            Cadastrar Nova Viagem
+        </h4>
+        <p class="text-muted small mt-1 mb-0">Adicione um destino aos seus roteiros pessoais</p>
+    </div>
+
+    <!-- Card do formulário -->
+    <div class="card border-0 shadow-sm rounded-4">
+        <div class="card-body p-4 p-md-5">
+            <form action="/cadastrarViagens" method="POST"  id="formViagem">
+
+                <!-- Tipo de Destino -->
+                <div class="mb-4">
+                    <label class="form-label fw-semibold text-uppercase text-secondary" style="font-size:0.75rem; letter-spacing:0.05em;">
+                        Tipo de destino
+                    </label>
+                    <div class="d-flex gap-2">
+                        <input type="radio" class="btn-check" name="tipo" id="tipo-nacional" value="nacional" checked />
+                        <label class="btn btn-outline-danger w-50 rounded-3" for="tipo-nacional">
+                            🇧🇷 Nacional
+                        </label>
+                        <input type="radio" class="btn-check" name="tipo" id="tipo-internacional" value="internacional" />
+                        <label class="btn btn-outline-danger w-50 rounded-3" for="tipo-internacional">
+                            🌍 Internacional
+                        </label>
+                    </div>
+                </div>
+
+                <!-- País / Estado + Cidade -->
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6 d-none" id="pais-group">
+                        <label class="form-label fw-semibold text-uppercase text-secondary" style="font-size:0.75rem; letter-spacing:0.05em;" for="pais">
+                            País
+                        </label>
+                        <input type="text" class="form-control rounded-3" name="pais" id="pais" placeholder="Ex: França" />
+                    </div>
+
+                    <div class="col-md-6" id="estado-group">
+                        <label class="form-label fw-semibold text-uppercase text-secondary" style="font-size:0.75rem; letter-spacing:0.05em;" for="estado">
+                            Estado
+                        </label>
+                        <select class="form-select rounded-3" name="estado" id="estado">
+                            <option value="">Selecione o estado</option>
+                            <option>Acre</option>
+                            <option>Alagoas</option>
+                            <option>Amapá</option>
+                            <option>Amazonas</option>
+                            <option>Bahia</option>
+                            <option>Ceará</option>
+                            <option>Distrito Federal</option>
+                            <option>Espírito Santo</option>
+                            <option>Goiás</option>
+                            <option>Maranhão</option>
+                            <option>Mato Grosso</option>
+                            <option>Mato Grosso do Sul</option>
+                            <option>Minas Gerais</option>
+                            <option>Pará</option>
+                            <option>Paraíba</option>
+                            <option>Paraná</option>
+                            <option>Pernambuco</option>
+                            <option>Piauí</option>
+                            <option>Rio de Janeiro</option>
+                            <option>Rio Grande do Norte</option>
+                            <option>Rio Grande do Sul</option>
+                            <option>Rondônia</option>
+                            <option>Roraima</option>
+                            <option>Santa Catarina</option>
+                            <option>São Paulo</option>
+                            <option>Sergipe</option>
+                            <option>Tocantins</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold text-uppercase text-secondary" style="font-size:0.75rem; letter-spacing:0.05em;" for="cidade">
+                            Cidade
+                        </label>
+                        <input type="text" class="form-control rounded-3" name="cidade" id="cidade" placeholder="Ex: Florianópolis" />
+                    </div>
+                </div>
+
+                <!-- Nome do destino -->
+                <div class="mb-3">
+                    <label class="form-label fw-semibold text-uppercase text-secondary" style="font-size:0.75rem; letter-spacing:0.05em;" for="nome">
+                        Nome do destino
+                    </label>
+                    <input type="text" class="form-control rounded-3" name="nome" id="nome" placeholder="Ex: Chapada Diamantina" />
+                </div>
+
+                <!-- Descrição -->
+                <div class="mb-3">
+                    <label class="form-label fw-semibold text-uppercase text-secondary" style="font-size:0.75rem; letter-spacing:0.05em;" for="descricao">
+                        Descrição
+                    </label>
+                    <textarea class="form-control rounded-3" name="descricao" id="descricao" rows="3"
+                        placeholder="Descreva o que torna este destino especial..."></textarea>
+                </div>
+
+                <!-- Tags -->
+                <div class="mb-3">
+                    <label class="form-label fw-semibold text-uppercase text-secondary" style="font-size:0.75rem; letter-spacing:0.05em;" for="tags">
+                        Tags / atrações
+                    </label>
+                    <input type="text" class="form-control rounded-3" name="tags" id="tags"
+                        placeholder="Ex: praias, trilhas, cultura, gastronomia" />
+                    <div class="form-text">Separe as tags por vírgula</div>
+                </div>
+
+                <!-- Avaliação -->
+                <div class="mb-4">
+                    <label class="form-label fw-semibold text-uppercase text-secondary d-block" style="font-size:0.75rem; letter-spacing:0.05em;">
+                        Avaliação
+                    </label>
+                    <div class="d-flex gap-1 fs-3" id="stars">
+                        <span class="star text-warning" data-v="1" onclick="setStars(1)" style="cursor:pointer; transition: transform 0.1s;">★</span>
+                        <span class="star text-warning" data-v="2" onclick="setStars(2)" style="cursor:pointer; transition: transform 0.1s;">★</span>
+                        <span class="star text-warning" data-v="3" onclick="setStars(3)" style="cursor:pointer; transition: transform 0.1s;">★</span>
+                        <span class="star text-secondary" data-v="4" onclick="setStars(4)" style="cursor:pointer; transition: transform 0.1s;">★</span>
+                        <span class="star text-secondary" data-v="5" onclick="setStars(5)" style="cursor:pointer; transition: transform 0.1s;">★</span>
+                    </div>
+                    <input type="hidden" name="avaliacao" id="input-avaliacao" value="3" />
+                </div>
+
+                <hr class="my-4" />
+
+                <!-- Upload de Imagem -->
+                <div class="mb-4">
+                    <label class="form-label fw-semibold text-uppercase text-secondary" style="font-size:0.75rem; letter-spacing:0.05em;">
+                        Imagem do destino
+                    </label>
+
+                    <div id="upload-zone"
+                         class="border border-2 rounded-4 p-5 text-center text-muted"
+                         onclick="document.getElementById('imagem').click()"
+                         style="cursor:pointer; border-style: dashed !important; transition: background 0.2s, border-color 0.2s;"
+                         onmouseover="this.style.background='#fff5f3'; this.style.borderColor='#dc3545';"
+                         onmouseout="this.style.background=''; this.style.borderColor='';">
+                        <input type="file" name="imagem" id="imagem" accept="image/*" class="d-none" onchange="previewImagem(event)" />
+                        <i class="fa-solid fa-cloud-arrow-up fa-2x text-danger mb-2 d-block"></i>
+                        <p class="mb-0 fw-semibold small">Clique para selecionar uma imagem</p>
+                        <p class="mb-0 text-muted" style="font-size:0.75rem;">PNG, JPG ou WEBP · até 5 MB</p>
+                    </div>
+
+                    <div id="img-preview" class="d-none position-relative rounded-4 overflow-hidden mt-3" style="height: 220px;">
+                        <img id="preview-img" src="" alt="Prévia" class="w-100 h-100 object-fit-cover" />
+                        <div class="position-absolute top-0 end-0 m-2">
+                            <button type="button" class="btn btn-sm btn-dark opacity-75 rounded-pill px-3"
+                                onclick="removerImagem()">
+                                <i class="fa-solid fa-xmark me-1"></i> Remover
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botões -->
+                <div class="d-flex gap-2">
+                    <a href="/perfil" class="btn btn-outline-secondary rounded-3 px-4">
+                        Cancelar
+                    </a>
+                    <button type="submit" class="btn btn-danger rounded-3 fw-semibold flex-fill" id="btn-salvar">
+                        <span id="btn-text">
+                            <i class="fa-solid fa-floppy-disk me-2"></i> Salvar destino
+                        </span>
+                        <span id="btn-spinner" class="spinner-border spinner-border-sm ms-2 d-none" role="status"></span>
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include ('partials/footer.ejs') %>
+
+<script>
+    // Nacional / Internacional
+    document.querySelectorAll('input[name="tipo"]').forEach(radio => {
+        radio.addEventListener('change', function () {
+            const isInternacional = this.value === 'internacional';
+            document.getElementById('pais-group').classList.toggle('d-none', !isInternacional);
+            document.getElementById('estado-group').classList.toggle('d-none', isInternacional);
+        });
+    });
+
+    // Estrelas
+    function setStars(val) {
+        document.getElementById('input-avaliacao').value = val;
+        document.querySelectorAll('#stars .star').forEach(s => {
+            const v = parseInt(s.dataset.v);
+            s.classList.toggle('text-warning', v <= val);
+            s.classList.toggle('text-secondary', v > val);
+        });
+    }
+
+    // Hover nas estrelas
+    document.querySelectorAll('#stars .star').forEach(s => {
+        s.addEventListener('mouseover', () => s.style.transform = 'scale(1.3)');
+        s.addEventListener('mouseout', () => s.style.transform = 'scale(1)');
+    });
+
+    // Preview imagem
+    function previewImagem(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = ev => {
+            document.getElementById('preview-img').src = ev.target.result;
+            document.getElementById('upload-zone').classList.add('d-none');
+            document.getElementById('img-preview').classList.remove('d-none');
+        };
+        reader.readAsDataURL(file);
+    }
+
+    function removerImagem() {
+        document.getElementById('imagem').value = '';
+        document.getElementById('preview-img').src = '';
+        document.getElementById('upload-zone').classList.remove('d-none');
+        document.getElementById('img-preview').classList.add('d-none');
+    }
+
+    // Spinner no submit
+    document.getElementById('formViagem').addEventListener('submit', function () {
+        document.getElementById('btn-text').innerHTML = 'Salvando...';
+        document.getElementById('btn-spinner').classList.remove('d-none');
+        document.getElementById('btn-salvar').disabled = true;
+    });
+</script>

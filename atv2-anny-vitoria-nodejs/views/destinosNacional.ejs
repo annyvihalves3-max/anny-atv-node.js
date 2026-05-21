@@ -1,0 +1,39 @@
+<%- include ('partials/header.ejs') %>
+<%- include ('partials/navbar.ejs') %>
+
+
+<section class="container my-5">
+    <h2 class="mb-4 fw-bold"><%= titulo %></h2>
+    
+    <div class="row g-4">
+        <% lista.forEach(function(destino) { %>
+            
+            <div class="col-md-3">
+                <div class="card destino-card h-100">
+                    <a href="#" class="btn-salvar-card" title="Salvar Roteiro">
+                        <i class="fa-regular fa-bookmark"></i>
+                    </a>
+                    <img src="/images/<%= destino.img %>" class="card-img-top" alt="<%= destino.nome %>">
+                    
+                    <div class="card-body">
+                        <h5 class="card-titulo"><%= destino.nome %> (<%= destino.estado || destino.regiao %>)</h5>
+                        <p class="regiao">Região: <%= destino.regiao %></p>
+                        <p class="descricao"><%= destino.descricao %></p>                        
+                          <div class="estrelas text-warning">
+                                <% for(let i=0; i < 5; i++) { %>
+                                <% if (i < destino.estrelas) { %>
+                                ★ <% } else { %>
+                                ☆ <% } %>
+                                <% } %>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+        <% }) %>
+    </div>
+</section>
+    
+</main>
+
+<%- include ('partials/footer.ejs') %>
