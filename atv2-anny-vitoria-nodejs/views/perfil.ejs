@@ -4,7 +4,6 @@
 <div class="container my-5">
     <div class="row">
 
-        <!-- SIDEBAR -->
         <aside class="col-md-3">
             <div class="perfil-sidebar p-3 border rounded shadow-sm bg-white">
                 <div class="text-center mb-4">
@@ -16,7 +15,7 @@
                 </div>
 
                 <div class="list-group list-group-flush">
-                    <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center"
+                    <a href="/perfil" class="list-group-item list-group-item-action border-0 d-flex align-items-center"
                        onclick="showTab('painel')">
                         <i class="fa-solid fa-border-all me-3"></i> Meu Painel
                     </a>
@@ -43,13 +42,11 @@
             </div>
         </aside>
 
-        <!-- MAIN -->
+    
         <main class="col-md-9">
 
-            <!-- ABA: Roteiros + Viagens (padrão) -->
             <div id="tab-roteiros">
 
-                <!-- Roteiros Salvos -->
                 <div class="d-flex align-items-center mb-1">
                     <h4 class="fw-bold mb-0">Meus Roteiros Salvos</h4>
                     <i class="fa-solid fa-star text-orange ms-2"></i>
@@ -78,7 +75,6 @@
                     <% }) %>
                 </div>
 
-                <!-- Minhas Viagens cadastradas -->
                 <div class="mt-5">
                     <div class="d-flex align-items-center mb-1">
                         <h4 class="fw-bold mb-0">Minhas Viagens</h4>
@@ -145,7 +141,6 @@
                 </div>
             </div>
 
-            <!-- ABA: Minhas Viagens (separada) -->
             <div id="tab-viagens" class="d-none">
                 <div class="d-flex align-items-center mb-1">
                     <h4 class="fw-bold mb-0">Minhas Viagens</h4>

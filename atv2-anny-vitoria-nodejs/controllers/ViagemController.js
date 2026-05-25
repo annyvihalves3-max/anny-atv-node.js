@@ -29,12 +29,10 @@ const upload = multer({
     }
 });
 
-// GET - formulário de cadastro
 router.get("/cadastrarViagens", (req, res) => {
     res.render("cadastrarViagens");
 });
 
-// POST - salvar cadastro
 router.post("/cadastrarViagens", upload.single("imagem"), async (req, res) => {
     try {
         const { tipo, pais, estado, cidade, nome, descricao, tags, avaliacao } = req.body;
@@ -59,14 +57,12 @@ router.post("/cadastrarViagens", upload.single("imagem"), async (req, res) => {
     }
 });
 
-// GET - página de edição
 router.get("/editarViagem/:id", async (req, res) => {
     const viagem = await Viagens.findByPk(req.params.id);
     if (!viagem) return res.redirect("/perfil");
     res.render("editarViagens", { viagem });
 });
 
-// POST - salvar edição
 router.post("/editarViagem/:id", upload.single("imagem"), async (req, res) => {
     try {
         const viagem = await Viagens.findByPk(req.params.id);

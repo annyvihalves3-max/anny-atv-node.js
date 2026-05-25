@@ -19,7 +19,6 @@
         <div class="card-body p-4 p-md-5">
             <form action="/editarViagem/<%= viagem.id %>" method="POST" enctype="multipart/form-data">
 
-                <!-- Tipo -->
                 <div class="mb-4">
                     <label class="form-label fw-semibold text-uppercase text-secondary" style="font-size:0.75rem; letter-spacing:0.05em;">Tipo de destino</label>
                     <div class="d-flex gap-2">
@@ -30,7 +29,6 @@
                     </div>
                 </div>
 
-                <!-- País / Estado + Cidade -->
                 <div class="row g-3 mb-3">
                     <div class="col-md-6 <%= viagem.tipo === 'internacional' ? '' : 'd-none' %>" id="pais-group">
                         <label class="form-label fw-semibold text-uppercase text-secondary" style="font-size:0.75rem;" for="pais">País</label>
@@ -51,26 +49,22 @@
                     </div>
                 </div>
 
-                <!-- Nome -->
                 <div class="mb-3">
                     <label class="form-label fw-semibold text-uppercase text-secondary" style="font-size:0.75rem;" for="nome">Nome do destino</label>
                     <input type="text" class="form-control rounded-3" name="nome" id="nome" value="<%= viagem.nome %>" />
                 </div>
 
-                <!-- Descrição -->
                 <div class="mb-3">
                     <label class="form-label fw-semibold text-uppercase text-secondary" style="font-size:0.75rem;" for="descricao">Descrição</label>
                     <textarea class="form-control rounded-3" name="descricao" id="descricao" rows="3"><%= viagem.descricao %></textarea>
                 </div>
 
-                <!-- Tags -->
                 <div class="mb-3">
                     <label class="form-label fw-semibold text-uppercase text-secondary" style="font-size:0.75rem;" for="tags">Tags / atrações</label>
                     <input type="text" class="form-control rounded-3" name="tags" id="tags" value="<%= viagem.tags || '' %>" placeholder="Ex: praias, trilhas" />
                     <div class="form-text">Separe as tags por vírgula</div>
                 </div>
 
-                <!-- Avaliação -->
                 <div class="mb-4">
                     <label class="form-label fw-semibold text-uppercase text-secondary d-block" style="font-size:0.75rem;">Avaliação</label>
                     <div class="d-flex gap-1 fs-3" id="stars">
@@ -85,7 +79,6 @@
 
                 <hr class="my-4" />
 
-                <!-- Imagem atual -->
                 <div class="mb-4">
                     <label class="form-label fw-semibold text-uppercase text-secondary" style="font-size:0.75rem;">Imagem do destino</label>
 
@@ -120,7 +113,6 @@
                     </div>
                 </div>
 
-                <!-- Botões -->
                 <div class="d-flex gap-2">
                     <a href="/perfil" class="btn btn-outline-secondary rounded-3 px-4">Cancelar</a>
                     <button type="submit" class="btn btn-danger rounded-3 fw-semibold flex-fill">
