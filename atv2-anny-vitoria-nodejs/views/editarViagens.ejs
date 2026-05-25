@@ -1,0 +1,179 @@
+<%- include ('partials/header.ejs') %>
+<%- include ('partials/navbar.ejs') %>
+
+<div class="container my-5" style="max-width: 720px;">
+
+    <a href="/perfil" class="text-decoration-none text-muted small d-flex align-items-center mb-3 gap-1">
+        <i class="fa-solid fa-arrow-left"></i> Voltar ao perfil
+    </a>
+
+    <div class="mb-4">
+        <h4 class="fw-bold mb-0 d-flex align-items-center gap-2">
+            <i class="fa-solid fa-pen text-danger"></i>
+            Editar Viagem
+        </h4>
+        <p class="text-muted small mt-1 mb-0">Atualize os dados do seu destino</p>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-4">
+        <div class="card-body p-4 p-md-5">
+            <form action="/editarViagem/<%= viagem.id %>" method="POST" enctype="multipart/form-data">
+
+                <!-- Tipo -->
+                <div class="mb-4">
+                    <label class="form-label fw-semibold text-uppercase text-secondary" style="font-size:0.75rem; letter-spacing:0.05em;">Tipo de destino</label>
+                    <div class="d-flex gap-2">
+                        <input type="radio" class="btn-check" name="tipo" id="tipo-nacional" value="nacional" <%= viagem.tipo === 'nacional' ? 'checked' : '' %> />
+                        <label class="btn btn-outline-danger w-50 rounded-3" for="tipo-nacional">🇧🇷 Nacional</label>
+                        <input type="radio" class="btn-check" name="tipo" id="tipo-internacional" value="internacional" <%= viagem.tipo === 'internacional' ? 'checked' : '' %> />
+                        <label class="btn btn-outline-danger w-50 rounded-3" for="tipo-internacional">🌍 Internacional</label>
+                    </div>
+                </div>
+
+                <!-- País / Estado + Cidade -->
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6 <%= viagem.tipo === 'internacional' ? '' : 'd-none' %>" id="pais-group">
+                        <label class="form-label fw-semibold text-uppercase text-secondary" style="font-size:0.75rem;" for="pais">País</label>
+                        <input type="text" class="form-control rounded-3" name="pais" id="pais" value="<%= viagem.pais || '' %>" placeholder="Ex: França" />
+                    </div>
+                    <div class="col-md-6 <%= viagem.tipo === 'internacional' ? 'd-none' : '' %>" id="estado-group">
+                        <label class="form-label fw-semibold text-uppercase text-secondary" style="font-size:0.75rem;" for="estado">Estado</label>
+                        <select class="form-select rounded-3" name="estado" id="estado">
+                            <option value="">Selecione o estado</option>
+                            <% ['Acre','Alagoas','Amapá','Amazonas','Bahia','Ceará','Distrito Federal','Espírito Santo','Goiás','Maranhão','Mato Grosso','Mato Grosso do Sul','Minas Gerais','Pará','Paraíba','Paraná','Pernambuco','Piauí','Rio de Janeiro','Rio Grande do Norte','Rio Grande do Sul','Rondônia','Roraima','Santa Catarina','São Paulo','Sergipe','Tocantins'].forEach(function(uf) { %>
+                                <option <%= viagem.estado === uf ? 'selected' : '' %>><%= uf %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold text-uppercase text-secondary" style="font-size:0.75rem;" for="cidade">Cidade</label>
+                        <input type="text" class="form-control rounded-3" name="cidade" id="cidade" value="<%= viagem.cidade %>" />
+                    </div>
+                </div>
+
+                <!-- Nome -->
+                <div class="mb-3">
+                    <label class="form-label fw-semibold text-uppercase text-secondary" style="font-size:0.75rem;" for="nome">Nome do destino</label>
+                    <input type="text" class="form-control rounded-3" name="nome" id="nome" value="<%= viagem.nome %>" />
+                </div>
+
+                <!-- Descrição -->
+                <div class="mb-3">
+                    <label class="form-label fw-semibold text-uppercase text-secondary" style="font-size:0.75rem;" for="descricao">Descrição</label>
+                    <textarea class="form-control rounded-3" name="descricao" id="descricao" rows="3"><%= viagem.descricao %></textarea>
+                </div>
+
+                <!-- Tags -->
+                <div class="mb-3">
+                    <label class="form-label fw-semibold text-uppercase text-secondary" style="font-size:0.75rem;" for="tags">Tags / atrações</label>
+                    <input type="text" class="form-control rounded-3" name="tags" id="tags" value="<%= viagem.tags || '' %>" placeholder="Ex: praias, trilhas" />
+                    <div class="form-text">Separe as tags por vírgula</div>
+                </div>
+
+                <!-- Avaliação -->
+                <div class="mb-4">
+                    <label class="form-label fw-semibold text-uppercase text-secondary d-block" style="font-size:0.75rem;">Avaliação</label>
+                    <div class="d-flex gap-1 fs-3" id="stars">
+                        <% for(let i = 1; i <= 5; i++) { %>
+                            <span class="star <%= i <= viagem.avaliacao ? 'text-warning' : 'text-secondary' %>"
+                                data-v="<%= i %>" onclick="setStars(<%= i %>)"
+                                style="cursor:pointer; transition: transform 0.1s;">★</span>
+                        <% } %>
+                    </div>
+                    <input type="hidden" name="avaliacao" id="input-avaliacao" value="<%= viagem.avaliacao %>" />
+                </div>
+
+                <hr class="my-4" />
+
+                <!-- Imagem atual -->
+                <div class="mb-4">
+                    <label class="form-label fw-semibold text-uppercase text-secondary" style="font-size:0.75rem;">Imagem do destino</label>
+
+                    <% if (viagem.imagem) { %>
+                        <div class="mb-3 position-relative rounded-4 overflow-hidden" style="height:220px;">
+                            <img src="<%= viagem.imagem %>" class="w-100 h-100 object-fit-cover" alt="Imagem atual">
+                            <div class="position-absolute top-0 start-0 m-2">
+                                <span class="badge bg-dark opacity-75">Imagem atual</span>
+                            </div>
+                        </div>
+                    <% } %>
+
+                    <div id="upload-zone"
+                         class="border border-2 rounded-4 p-4 text-center text-muted"
+                         onclick="document.getElementById('imagem').click()"
+                         style="cursor:pointer; border-style: dashed !important;"
+                         onmouseover="this.style.background='#fff5f3'; this.style.borderColor='#dc3545';"
+                         onmouseout="this.style.background=''; this.style.borderColor='';">
+                        <input type="file" name="imagem" id="imagem" accept="image/*" class="d-none" onchange="previewImagem(event)" />
+                        <i class="fa-solid fa-cloud-arrow-up fa-2x text-danger mb-2 d-block"></i>
+                        <p class="mb-0 fw-semibold small"><%= viagem.imagem ? 'Clique para trocar a imagem' : 'Clique para selecionar uma imagem' %></p>
+                        <p class="mb-0 text-muted" style="font-size:0.75rem;">PNG, JPG ou WEBP · até 5 MB</p>
+                    </div>
+
+                    <div id="img-preview" class="d-none position-relative rounded-4 overflow-hidden mt-3" style="height:220px;">
+                        <img id="preview-img" src="" alt="Prévia" class="w-100 h-100 object-fit-cover" />
+                        <div class="position-absolute top-0 end-0 m-2">
+                            <button type="button" class="btn btn-sm btn-dark opacity-75 rounded-pill px-3" onclick="removerImagem()">
+                                <i class="fa-solid fa-xmark me-1"></i> Remover
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botões -->
+                <div class="d-flex gap-2">
+                    <a href="/perfil" class="btn btn-outline-secondary rounded-3 px-4">Cancelar</a>
+                    <button type="submit" class="btn btn-danger rounded-3 fw-semibold flex-fill">
+                        <i class="fa-solid fa-floppy-disk me-2"></i> Salvar alterações
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include ('partials/footer.ejs') %>
+
+<script>
+    document.querySelectorAll('input[name="tipo"]').forEach(radio => {
+        radio.addEventListener('change', function () {
+            const isInternacional = this.value === 'internacional';
+            document.getElementById('pais-group').classList.toggle('d-none', !isInternacional);
+            document.getElementById('estado-group').classList.toggle('d-none', isInternacional);
+        });
+    });
+
+    function setStars(val) {
+        document.getElementById('input-avaliacao').value = val;
+        document.querySelectorAll('#stars .star').forEach(s => {
+            const v = parseInt(s.dataset.v);
+            s.classList.toggle('text-warning', v <= val);
+            s.classList.toggle('text-secondary', v > val);
+        });
+    }
+
+    document.querySelectorAll('#stars .star').forEach(s => {
+        s.addEventListener('mouseover', () => s.style.transform = 'scale(1.3)');
+        s.addEventListener('mouseout', () => s.style.transform = 'scale(1)');
+    });
+
+    function previewImagem(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = ev => {
+            document.getElementById('preview-img').src = ev.target.result;
+            document.getElementById('upload-zone').classList.add('d-none');
+            document.getElementById('img-preview').classList.remove('d-none');
+        };
+        reader.readAsDataURL(file);
+    }
+
+    function removerImagem() {
+        document.getElementById('imagem').value = '';
+        document.getElementById('preview-img').src = '';
+        document.getElementById('upload-zone').classList.remove('d-none');
+        document.getElementById('img-preview').classList.add('d-none');
+    }
+</script>

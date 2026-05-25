@@ -1,8 +1,17 @@
 // O arquivo index.js é o arquivo principal do projeto
 import express from "express";
+import multer from "multer";
 
 // Iniciando o Express 
 const app = express();
+
+
+//CONFIGURANDO O EJS
+app.set("view engine", "ejs");
+// DEFININDO A PASTA "PUBLIC" COMO DIRETORIO PARA ARQUIVOS ESTÁTICOS
+app.use(express.static('public'));
+
+app.use(express.urlencoded({extended: false}));
 
 import DestinosNacionalController from "./controllers/DestinosNacionalController.js";
 import DestinoInternacionalController from "./controllers/DestinoInternacionalController.js";
@@ -14,7 +23,6 @@ import connection from "./config/sequelize-config.js";
 
 import Viagens from "./models/Viagens.js"
 
-app.use(express.urlencoded({extended: false}));
 
 // Realizando a conexão com o banco de dados
 connection.authenticate().then(() => {
@@ -37,10 +45,6 @@ app.use("/", RoteirosController);
 app.use("/", PerfilController);
 app.use("/", ViagemController);
 
-//CONFIGURANDO O EJS
-app.set("view engine", "ejs");
-// DEFININDO A PASTA "PUBLIC" COMO DIRETORIO PARA ARQUIVOS ESTÁTICOS
-app.use(express.static('public'));
 
 // CRIANDO A ROTA PRINCIPAL DO SITE ("/")
 app.get("/", function(req, res){ //req- enviar um requisição para o servidor -- res- resposta para o usuario

@@ -24,15 +24,15 @@
                        onclick="showTab('dados')">
                         <i class="fa-regular fa-user me-3"></i> Meus Dados
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center active-profile-link"
-                       id="tab-roteiros-link" onclick="showTab('roteiros')">
+                    <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center"
+                       onclick="showTab('roteiros')">
                         <i class="fa-regular fa-bookmark me-3"></i> Meus Roteiros Salvos
                     </a>
                     <a href="#" class="list-group-item list-group-item-action border-0 d-flex align-items-center"
-                       id="tab-viagens-link" onclick="showTab('viagens')">
+                       onclick="showTab('viagens')">
                         <i class="fa-solid fa-route me-3"></i> Minhas Viagens
                     </a>
-                    <a href="/viagens/cadastrar" class="list-group-item list-group-item-action border-0 d-flex align-items-center text-danger fw-semibold">
+                    <a href="/cadastrarViagens" class="list-group-item list-group-item-action border-0 d-flex align-items-center">
                         <i class="fa-solid fa-plus me-3"></i> Cadastrar Viagem
                     </a>
                     <hr>
@@ -46,8 +46,10 @@
         <!-- MAIN -->
         <main class="col-md-9">
 
-            <!-- ABA: Meus Roteiros Salvos -->
+            <!-- ABA: Roteiros + Viagens (padrão) -->
             <div id="tab-roteiros">
+
+                <!-- Roteiros Salvos -->
                 <div class="d-flex align-items-center mb-1">
                     <h4 class="fw-bold mb-0">Meus Roteiros Salvos</h4>
                     <i class="fa-solid fa-star text-orange ms-2"></i>
@@ -59,7 +61,7 @@
                         <div class="col-md-6">
                             <div class="card h-100 border-0 shadow-sm profile-card">
                                 <div class="position-relative">
-                                    <img src="/images/<%= item.img %>" class="card-img-top" alt="<%= item.nome %>">
+                                    <img src="<%= item.img %>" class="card-img-top" alt="<%= item.nome %>">
                                     <div class="bookmark-badge">
                                         <i class="fa-regular fa-bookmark"></i>
                                     </div>
@@ -67,10 +69,8 @@
                                 <div class="card-body">
                                     <h6 class="fw-bold mb-1"><%= item.nome %></h6>
                                     <p class="text-muted small mb-3"><%= item.descricao %></p>
-                                    <div class="row g-2">
-                                        <div class="col-6">
-                                            <a href="#" class="btn btn-outline-orange btn-sm w-100">Ver Detalhes</a>
-                                        </div>
+                                    <div class="col-6">
+                                        <a href="#" class="btn btn-outline-danger btn-sm w-100">Ver Detalhes</a>
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +78,66 @@
                     <% }) %>
                 </div>
 
-                <!-- Botão para ir à página de cadastro -->
+                <!-- Minhas Viagens cadastradas -->
+                <div class="mt-5">
+                    <div class="d-flex align-items-center mb-1">
+                        <h4 class="fw-bold mb-0">Minhas Viagens</h4>
+                        <i class="fa-solid fa-route text-danger ms-2"></i>
+                    </div>
+                    <p class="text-muted small mb-4">Destinos que você cadastrou</p>
+
+                    <% if (viagens.length === 0) { %>
+                        <div class="text-center text-muted py-4">
+                            <i class="fa-solid fa-map-location-dot fa-2x mb-2 text-danger opacity-50"></i>
+                            <p class="fw-semibold mb-0">Você ainda não cadastrou nenhuma viagem.</p>
+                        </div>
+                    <% } else { %>
+                        <div class="row g-4">
+                            <% viagens.forEach(function(v) { %>
+                                <div class="col-md-6">
+                                    <div class="card h-100 border-0 shadow-sm profile-card">
+                                        <% if (v.imagem) { %>
+                                            <img src="<%= v.imagem %>" class="card-img-top" alt="<%= v.nome %>" style="height:180px; object-fit:cover;">
+                                        <% } else { %>
+                                            <div class="bg-light d-flex align-items-center justify-content-center" style="height:180px;">
+                                                <i class="fa-solid fa-image fa-2x text-muted"></i>
+                                            </div>
+                                        <% } %>
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-start mb-1">
+                                                <h6 class="fw-bold mb-0"><%= v.nome %></h6>
+                                                <span class="badge bg-danger-subtle text-danger rounded-pill" style="font-size:0.7rem;">
+                                                    <%= v.tipo %>
+                                                </span>
+                                            </div>
+                                            <p class="text-muted small mb-1">
+                                                <i class="fa-solid fa-location-dot me-1"></i>
+                                                <%= v.cidade %><%= v.estado ? ', ' + v.estado : '' %><%= v.pais ? ', ' + v.pais : '' %>
+                                            </p>
+                                            <p class="text-muted small mb-2"><%= v.descricao %></p>
+                                            <div class="text-warning mb-3">
+                                                <% for(let i = 1; i <= 5; i++) { %>
+                                                    <%= i <= v.avaliacao ? '★' : '☆' %>
+                                                <% } %>
+                                            </div>
+                                            <div class="d-flex gap-2">
+                                                <a href="/editarViagem/<%= v.id %>" class="btn btn-outline-danger btn-sm w-50">
+                                                    <i class="fa-solid fa-pen me-1"></i> Editar
+                                                </a>
+                                                <form action="/excluirViagem/<%= v.id %>" method="POST" style="width:50%">
+                                                    <button type="submit" class="btn btn-outline-secondary btn-sm w-100">
+                                                        <i class="fa-solid fa-trash me-1"></i> Excluir
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% }) %>
+                        </div>
+                    <% } %>
+                </div>
+
                 <div class="mt-4 text-center">
                     <a href="/cadastrarViagens" class="btn btn-danger fw-semibold px-4">
                         <i class="fa-solid fa-plus me-2"></i> Cadastrar Nova Viagem
@@ -86,8 +145,85 @@
                 </div>
             </div>
 
+            <!-- ABA: Minhas Viagens (separada) -->
+            <div id="tab-viagens" class="d-none">
+                <div class="d-flex align-items-center mb-1">
+                    <h4 class="fw-bold mb-0">Minhas Viagens</h4>
+                    <i class="fa-solid fa-route text-danger ms-2"></i>
+                </div>
+                <p class="text-muted small mb-4">Destinos que você cadastrou</p>
+
+                <% if (viagens.length === 0) { %>
+                    <div class="text-center text-muted py-5">
+                        <i class="fa-solid fa-map-location-dot fa-3x mb-3 text-danger opacity-50"></i>
+                        <p class="fw-semibold">Você ainda não cadastrou nenhuma viagem.</p>
+                        <a href="/cadastrarViagens" class="btn btn-danger px-4">
+                            <i class="fa-solid fa-plus me-2"></i> Cadastrar agora
+                        </a>
+                    </div>
+                <% } else { %>
+                    <div class="row g-4">
+                        <% viagens.forEach(function(v) { %>
+                            <div class="col-md-6">
+                                <div class="card h-100 border-0 shadow-sm profile-card">
+                                    <% if (v.imagem) { %>
+                                        <img src="<%= v.imagem %>" class="card-img-top" alt="<%= v.nome %>" style="height:180px; object-fit:cover;">
+                                    <% } else { %>
+                                        <div class="bg-light d-flex align-items-center justify-content-center" style="height:180px;">
+                                            <i class="fa-solid fa-image fa-2x text-muted"></i>
+                                        </div>
+                                    <% } %>
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-start mb-1">
+                                            <h6 class="fw-bold mb-0"><%= v.nome %></h6>
+                                            <span class="badge bg-danger-subtle text-danger rounded-pill" style="font-size:0.7rem;">
+                                                <%= v.tipo %>
+                                            </span>
+                                        </div>
+                                        <p class="text-muted small mb-1">
+                                            <i class="fa-solid fa-location-dot me-1"></i>
+                                            <%= v.cidade %><%= v.estado ? ', ' + v.estado : '' %><%= v.pais ? ', ' + v.pais : '' %>
+                                        </p>
+                                        <p class="text-muted small mb-2"><%= v.descricao %></p>
+                                        <div class="text-warning mb-3">
+                                            <% for(let i = 1; i <= 5; i++) { %>
+                                                <%= i <= v.avaliacao ? '★' : '☆' %>
+                                            <% } %>
+                                        </div>
+                                        <div class="d-flex gap-2">
+                                            <a href="/editarViagem/<%= v.id %>" class="btn btn-outline-danger btn-sm w-50">
+                                                <i class="fa-solid fa-pen me-1"></i> Editar
+                                            </a>
+                                            <form action="/excluirViagem/<%= v.id %>" method="POST" style="width:50%">
+                                                <button type="submit" class="btn btn-outline-secondary btn-sm w-100">
+                                                    <i class="fa-solid fa-trash me-1"></i> Excluir
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </div>
+
+                    <div class="mt-4 text-center">
+                        <a href="/cadastrarViagens" class="btn btn-danger fw-semibold px-4">
+                            <i class="fa-solid fa-plus me-2"></i> Cadastrar Nova Viagem
+                        </a>
+                    </div>
+                <% } %>
+            </div>
+
         </main>
     </div>
 </div>
 
 <%- include ('partials/footer.ejs') %>
+
+<script>
+    function showTab(tab) {
+        document.querySelectorAll('main > div[id^="tab-"]').forEach(el => el.classList.add('d-none'));
+        document.getElementById('tab-' + tab).classList.remove('d-none');
+    }
+    showTab('roteiros');
+</script>

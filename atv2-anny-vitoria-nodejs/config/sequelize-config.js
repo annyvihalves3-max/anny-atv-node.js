@@ -16,5 +16,6 @@ const connection = new Sequelize({
     // Nome do banco que será usado na aplicação
      database: "destinos"
 });
+
 // Exportando o mundo
 export default connection; 
